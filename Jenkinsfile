@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                checkout([$class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/Sneha-S-U/portfolio.git'
-                    ]]
-                ])
+                checkout scm
             }
         }
 
         stage('Deploy HTML') {
             steps {
-                sh 'sudo mkdir -p /var/www/html/portfolio'
-                sh 'sudo cp -r * /var/www/html/portfolio'
+                sh '''
+                    echo "Creating deploy directory..."
+                    sudo mkdir -p /var/www/html/portfolio
+
+                    echo "Copying files..."
+                    sudo cp -r * /var/www/html/portfolio/
+                '''
             }
         }
     }
