@@ -15,10 +15,11 @@ pipeline {
 
         stage('Deploy HTML') {
             steps {
-                sh 'mkdir -p /var/www/html/portfolio'
-                sh 'cp -r * /var/www/html/portfolio'
+                sh 'sudo mkdir -p /var/www/html/portfolio'
+                sh 'sudo cp -r * /var/www/html/portfolio'
             }
         }
     }
 }
+
 
